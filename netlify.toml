@@ -1,0 +1,9 @@
+# Configuración de Netlify · Paula Gaitán
+# Sitio estático: no hay comando de compilación, se publica la carpeta raíz.
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
