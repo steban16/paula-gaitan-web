@@ -16,6 +16,7 @@ const CONFIG = {
 document.addEventListener('DOMContentLoaded', () => {
   conectarFormulario();
   ajustarCabecera();
+  cabeceraCorrida();
   creditoTYR();
   cuentaRegresiva();
   if (CONFIG.ocultarMarcasPendientes) quitarMarcasPendientes();
@@ -95,4 +96,18 @@ function ajustarCabecera() {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
   let t;
   window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(medir, 100); });
+}
+
+/* Muestra la cabecera corrida cuando la portada sale de la pantalla */
+function cabeceraCorrida() {
+  const barra = document.getElementById('runhead');
+  const portada = document.querySelector('.cover');
+  if (!barra || !portada || !('IntersectionObserver' in window)) return;
+  const enlaces = barra.querySelectorAll('a');
+  new IntersectionObserver(([e]) => {
+    const visible = !e.isIntersecting;
+    barra.classList.toggle('is-on', visible);
+    barra.setAttribute('aria-hidden', String(!visible));
+    enlaces.forEach((a) => a.tabIndex = visible ? 0 : -1);
+  }, { rootMargin: '-120px 0px 0px 0px' }).observe(portada);
 }

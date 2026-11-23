@@ -24,7 +24,7 @@
   --color-ink:#1f1c1a;
   --color-muted:#655b50;
   --color-gold:#c4a268;
-  --color-gold-ink:#85632a;
+  --color-gold-ink:#755520; /* pasa AA sobre los dos cremas */
   --color-rule:rgba(31,28,26,.22);
 
   /* Identidad del curso (sus flyers) */
@@ -79,7 +79,7 @@ p{margin:0}
 .cover-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3)}
 .mono-link img{height:40px;width:auto}
 .cover-top nav{display:flex;gap:var(--space-3);font-size:15px}
-.cover-top nav a{text-decoration:none;color:var(--color-muted)}
+.cover-top nav a{text-decoration:none;color:var(--color-muted);padding:12px 4px}
 .cover-top nav a:hover{color:var(--color-ink)}
 
 /* La cabecera: el nombre ocupa todo el ancho, como en una revista */
@@ -98,8 +98,8 @@ p{margin:0}
 .toc .pg{font:400 var(--t-small)/1.9 var(--font-text);color:var(--color-muted)}
 
 /* La foto se monta sobre la cabecera: la ruptura de la rejilla */
-.cover-photo{grid-column:7 / span 6;margin:calc(var(--mast-size, 150px) * -0.78) 0 0;position:relative;z-index:2;animation:rise 1.2s .15s cubic-bezier(.2,.7,.2,1) both}
-.cover-photo img{width:100%;aspect-ratio:490/457;object-fit:cover;border-radius:var(--radius-photo);box-shadow:0 30px 60px -30px rgba(31,28,26,.6)}
+.cover-photo{grid-column:7 / span 6;margin:calc(var(--mast-size, 150px) * -0.7) 0 0;position:relative;z-index:2;animation:rise 1.2s .15s cubic-bezier(.2,.7,.2,1) both}
+.cover-photo img{width:100%;aspect-ratio:490/457;object-fit:cover;border-radius:var(--radius-photo)}
 .cover-photo figcaption{margin-top:10px;font-size:var(--t-small);color:var(--color-muted)}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
@@ -110,6 +110,18 @@ p{margin:0}
   .cover-photo{margin-top:0;order:-1}
 }
 
+/* Cabecera corrida: como el encabezado de las páginas interiores de una revista */
+.runhead{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--color-paper);border-bottom:1px solid var(--color-ink);transform:translateY(-100%);transition:transform .3s ease}
+.runhead.is-on{transform:none}
+.runhead .wrap{display:flex;align-items:center;gap:var(--space-3);height:60px}
+.runhead-name{display:flex;align-items:center;gap:10px;text-decoration:none;font:500 22px/1 var(--font-display)}
+.runhead-name img{height:28px;width:auto}
+.runhead nav{display:flex;gap:var(--space-2);margin-left:auto;font-size:15px}
+.runhead nav a{text-decoration:none;color:var(--color-muted);padding:12px 4px}
+.runhead nav a:hover{color:var(--color-ink)}
+.runhead .btn{padding:11px 18px}
+@media (max-width:760px){.runhead nav{display:none}.runhead .btn{margin-left:auto}}
+
 /* 4. Artículo: Mi proceso -------------------------------- */
 .story-article{padding:var(--space-6) 0}
 .article-head h2{font-size:var(--t-h2);letter-spacing:-.02em;max-width:14ch}
@@ -117,7 +129,7 @@ p{margin:0}
 .article-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--space-3);margin-top:var(--space-5)}
 .article-body{grid-column:1 / span 7;columns:2;column-gap:var(--space-4)}
 .article-body h3{font-size:24px;margin:0 0 var(--space-1);break-after:avoid}
-.article-body p{margin-bottom:var(--space-3);break-inside:avoid;max-width:60ch}
+.article-body p{margin-bottom:var(--space-4);break-inside:avoid;max-width:60ch;font-size:19px}
 .dropcap::first-letter{float:left;font:500 88px/.78 var(--font-display);color:var(--color-gold-ink);margin:8px 10px 0 0}
 .pull{grid-column:9 / span 4;border-top:3px solid var(--color-gold);padding-top:var(--space-3);align-self:start}
 .pull blockquote{margin:0;font:italic 500 clamp(30px,3.2vw,42px)/1.15 var(--font-display)}
