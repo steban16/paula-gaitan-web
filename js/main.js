@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
   creditoTYR();
   cuentaRegresiva();
   historia();
+  antesYDespues();
+  curvaCrecimiento();
   if (CONFIG.ocultarMarcasPendientes) quitarMarcasPendientes();
   document.getElementById('anio').textContent = new Date().getFullYear();
 });
@@ -112,4 +114,48 @@ function historia() {
   });
 
   mostrar(0);
+}
+
+/* Antes y después: la línea sigue al control deslizante (ratón, dedo o teclado) */
+function antesYDespues() {
+  const caja = document.getElementById('ba');
+  const control = document.getElementById('baRange');
+  if (!caja || !control) return;
+  const mover = () => caja.style.setProperty('--pos', control.value + '%');
+  control.addEventListener('input', mover);
+  mover();
+}
+
+/* Curva de crecimiento: une la parte de arriba de cada etapa de la escalera */
+function curvaCrecimiento() {
+  const lista = document.getElementById('steps');
+  if (!lista) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('class', 'growth');
+  svg.setAttribute('aria-hidden', 'true');
+  lista.appendChild(svg);
+
+  const dibujar = () => {
+    const base = lista.getBoundingClientRect();
+    const puntos = [...lista.querySelectorAll('.step')].map((paso) => {
+      const r = paso.getBoundingClientRect();
+      return [r.left - base.left + r.width / 2, r.top - base.top];
+    });
+    if (puntos.length < 2) return;
+    let d = `M ${puntos[0][0]} ${puntos[0][1]}`;
+    for (let i = 1; i < puntos.length; i++) {
+      const [x0, y0] = puntos[i - 1];
+      const [x1, y1] = puntos[i];
+      const mx = (x0 + x1) / 2;
+      d += ` C ${mx} ${y0}, ${mx} ${y1}, ${x1} ${y1}`;
+    }
+    svg.innerHTML = `<path d="${d}"/>` + puntos.map(([x, y], i) =>
+      `<circle cx="${x}" cy="${y}" r="${i === puntos.length - 1 ? 7 : 5}" class="${i === puntos.length - 1 ? 'last' : ''}"/>`).join('');
+  };
+
+  dibujar();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(dibujar);
+  let t;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(dibujar, 120); });
 }

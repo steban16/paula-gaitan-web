@@ -100,7 +100,7 @@
       <h2 class="h2">Mi crecimiento, capítulo a capítulo</h2>
       <p class="intro">Cada etapa me dejó una lección que hoy aplico con cada marca y que ahora comparto en clase.</p>
 
-      <ol class="steps">
+      <ol class="steps" id="steps">
         <li class="step">
           <span class="num">1</span>
           <h3>La curiosidad</h3>
@@ -139,7 +139,39 @@
   <!-- ============ LO QUE HAGO ============ -->
   <section id="servicios">
     <div class="wrap">
-      <h2 class="h2">Tres oficios, una sola visión de tu marca</h2>
+      <div class="svc-intro">
+        <div>
+          <h2 class="h2">Tres oficios, una sola visión de tu marca</h2>
+          <p class="intro">Así se nota el trabajo: el mismo perfil, antes y después de tener una estrategia. Arrastra la línea para comparar.</p>
+          <p class="ba-note">Ejemplo ilustrativo, no es un cliente real.</p>
+        </div>
+
+        <!-- Antes y después: perfil de ejemplo dibujado con HTML y CSS -->
+        <div class="ba" id="ba" style="--pos:50%">
+          <div class="ba-profile">
+            <span class="ba-avatar" aria-hidden="true"></span>
+            <div><strong>tu.marca</strong><span>Perfil de ejemplo</span></div>
+          </div>
+          <div class="ba-stage">
+            <div class="ba-grid ba-before" aria-hidden="true">
+              <span class="t b1">PROMO!!!</span><span class="t b2">hola</span><span class="t b3"></span>
+              <span class="t b4">Nuevo</span><span class="t b5"></span><span class="t b6">info x DM</span>
+              <span class="t b7"></span><span class="t b8">2x1??</span><span class="t b9">feliz lunes</span>
+            </div>
+            <div class="ba-grid ba-after" aria-hidden="true">
+              <span class="t a1"><em>Tu marca, clara</em></span><span class="t a2"><i class="shape"></i></span><span class="t a3">Tip 1<small>Define a quién le hablas</small></span>
+              <span class="t a4"><i class="play"></i><small>Reel</small></span><span class="t a5"><em>Detrás de cámaras</em></span><span class="t a6"><i class="shape"></i></span>
+              <span class="t a7">Tip 2<small>Una voz en todo</small></span><span class="t a8"><i class="shape"></i></span><span class="t a9"><em>Pedidos abiertos</em></span>
+            </div>
+            <span class="ba-tag ba-tag-before" aria-hidden="true">Sin estrategia</span>
+            <span class="ba-tag ba-tag-after" aria-hidden="true">Con estrategia</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <label class="sr-only" for="baRange">Comparar el perfil antes y después de la estrategia</label>
+            <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50">
+          </div>
+        </div>
+      </div>
+
       <div class="services">
         <div class="svc">
           <h3>Estrategia</h3>
