@@ -16,6 +16,11 @@ netlify.toml      configuración de publicación en Netlify
 
 En `js/main.js`, objeto `CONFIG`: fechas del curso, enlace del formulario de inscripción, enlace del crédito de TYR y la opción para ocultar los textos pendientes.
 
+## Versiones
+
+- `main`: versión publicada (historia de Instagram interactiva) → https://paula-gaitan.netlify.app
+- `v2`: propuesta "Portada de revista" → https://v2--paula-gaitan.netlify.app
+
 ## Publicación
 
 Cada cambio que se sube a la rama `main` se publica automáticamente en Netlify.
