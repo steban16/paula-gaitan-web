@@ -1,5 +1,5 @@
 /* =========================================================
-   Paula Gaitán · Sitio personal · Interacciones
+   Paula Gaitán · Versión 2 "Portada de revista" · Interacciones
    Diseño y desarrollo: TYR Productions
    ========================================================= */
 
@@ -15,9 +15,9 @@ const CONFIG = {
 
 document.addEventListener('DOMContentLoaded', () => {
   conectarFormulario();
+  ajustarCabecera();
   creditoTYR();
   cuentaRegresiva();
-  historia();
   if (CONFIG.ocultarMarcasPendientes) quitarMarcasPendientes();
   document.getElementById('anio').textContent = new Date().getFullYear();
 });
@@ -72,44 +72,27 @@ function creditoTYR() {
   }
 }
 
-/* Historia de Instagram de la portada.
-   Se avanza tocando la mitad derecha, se retrocede con la izquierda,
-   o con las flechas del teclado cuando la historia tiene el foco.
-   No avanza sola: solo responde a lo que hace la persona. */
-function historia() {
-  const story = document.getElementById('story');
-  if (!story) return;
-
-  const frames = story.querySelectorAll('.frame');
-  const bars = story.querySelectorAll('.bars i');
-  const contador = document.getElementById('storyCount');
-  let actual = 0;
-
-  const mostrar = (n) => {
-    actual = Math.max(0, Math.min(frames.length - 1, n));
-    frames.forEach((f, i) => f.classList.toggle('is-on', i === actual));
-    bars.forEach((b, i) => b.classList.toggle('done', i <= actual));
-    contador.textContent = `${actual + 1} de ${frames.length}`;
+/* Ajusta el nombre de la portada para que ocupe exactamente el ancho disponible,
+   como la cabecera de una revista. Se recalcula al cargar la fuente y al cambiar el tamaño. */
+function ajustarCabecera() {
+  const h = document.querySelector('.masthead');
+  if (!h) return;
+  const medir = () => {
+    const disponible = h.parentElement.clientWidth;
+    h.style.fontSize = '100px';
+    h.style.display = 'inline-block';
+    h.style.width = 'auto';
+    const natural = h.getBoundingClientRect().width;
+    h.style.display = '';
+    h.style.width = '';
+    if (natural > 0) {
+      const tam = Math.min(260, (100 * disponible / natural) * 0.995);
+      h.style.fontSize = tam + 'px';
+      document.documentElement.style.setProperty('--mast-size', tam + 'px');
+    }
   };
-
-  story.querySelector('.tap-next').addEventListener('click', () => mostrar(actual + 1));
-  story.querySelector('.tap-prev').addEventListener('click', () => mostrar(actual - 1));
-  story.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); mostrar(actual + 1); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); mostrar(actual - 1); }
-  });
-
-  /* Encuesta del último cuadro: cada respuesta lleva a un lugar distinto */
-  const respuesta = document.getElementById('pollReply');
-  story.querySelectorAll('[data-vote]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      story.querySelectorAll('[data-vote]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-      respuesta.hidden = false;
-      respuesta.innerHTML = btn.dataset.vote === 'si'
-        ? 'Para crecer con orden, mira el <a href="#curso">curso de diciembre</a>.'
-        : 'Hablemos y lo revisamos juntos: <a href="#contacto">escríbeme</a>.';
-    });
-  });
-
-  mostrar(0);
+  medir();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+  let t;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(medir, 100); });
 }

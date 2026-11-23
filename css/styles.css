@@ -1,45 +1,48 @@
 /* =========================================================
-   Paula Gaitán · Sitio personal
+   Paula Gaitán · Versión 2 "Portada de revista"
    Diseño y desarrollo: TYR Productions
 
-   Idea del diseño: el único elemento llamativo es la historia
-   de Instagram de la portada (interactiva). Todo lo demás es
-   sobrio: tipografía con serifa del logo, crema y dorado.
+   Plan
+   - Sujeto: la marca personal de Paula y su curso de diciembre.
+   - Dirección: revista de autor. Editorial, cálida, segura.
+   - La única cosa audaz: la portada (nombre gigante como cabecera
+     de revista, con la foto montada encima).
+   - El resto se lee como artículos: folios con número de página,
+     columnas, capitular y una cita grande.
 
    Estructura:
-   1. Variables (marca)      6. Proceso (escalera)
-   2. Base                   7. Cita y servicios
-   3. Utilidades y botones   8. Curso
-   4. Navegación             9. Contacto y pie
-   5. Portada e historia
+   1. Variables   4. Artículo (proceso)   7. Contacto
+   2. Base        5. Guía (servicios)     8. Colofón
+   3. Portada     6. Tema de portada (curso)
    ========================================================= */
 
 /* 1. Variables ------------------------------------------- */
 :root{
-  /* Marca personal: colores tomados del logo */
-  --paper:#f4eddd;      /* crema del fondo del logo */
-  --paper-2:#ebe1cb;
-  --white:#fbf7ee;
-  --ink:#1f1c1a;        /* tinta del nombre en el logo */
-  --muted:#675d52;
-  --gold:#c4a268;       /* dorado del monograma */
-  --gold-deep:#85632a;  /* dorado oscuro para texto pequeño */
-  --line:rgba(31,28,26,.14);
+  /* Marca personal, tomada del logo (proporción 60 / 30 / 10) */
+  --color-paper:#f4eddd;
+  --color-paper-deep:#e9dfc8;
+  --color-ink:#1f1c1a;
+  --color-muted:#655b50;
+  --color-gold:#c4a268;
+  --color-gold-ink:#85632a;
+  --color-rule:rgba(31,28,26,.22);
 
-  /* El curso conserva la identidad de sus flyers */
-  --night:#170c35;
-  --violet:#6b2bd9;
-  --blue:#1f6fe5;
-  --lime:#d8f53a;
+  /* Identidad del curso (sus flyers) */
+  --color-night:#170c35;
+  --color-violet:#6b2bd9;
+  --color-blue:#1f6fe5;
+  --color-lime:#d8f53a;
+  --color-on-night:#efeaf8;
 
-  --f-display:"Cormorant Garamond", "Cormorant", Georgia, serif;
-  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display:"Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-text:"Commissioner", "Segoe UI", system-ui, sans-serif;
 
-  /* Escala tipográfica */
-  --t-sm:14px; --t-base:17px; --t-md:21px; --t-lg:28px;
-  --t-xl:clamp(34px,4.4vw,52px);
-  --t-2xl:clamp(40px,5.4vw,68px);
-  --t-hero:clamp(52px,7.4vw,104px);
+  --space-1:8px; --space-2:16px; --space-3:24px; --space-4:40px; --space-5:64px; --space-6:112px;
+  --radius-photo:2px;
+
+  --t-small:14px; --t-text:18px; --t-dek:22px; --t-h3:30px;
+  --t-h2:clamp(44px,6vw,84px);
+  --t-mast:clamp(40px,11.5vw,190px); /* js/main.js la ajusta al ancho exacto */
 
   color-scheme:light;
 }
@@ -47,193 +50,159 @@
 /* 2. Base ------------------------------------------------ */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--t-base)/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--color-paper);color:var(--color-ink);font:300 var(--t-text)/1.65 var(--font-text);-webkit-font-smoothing:antialiased}
+/* Grano de papel, muy sutil */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 img{max-width:100%;display:block}
 a{color:inherit}
-h1,h2,h3{font-family:var(--f-display);font-weight:500;line-height:1.02;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1;margin:0;text-wrap:balance}
 p{margin:0}
-:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;border-radius:4px}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{transition:none!important}
+:focus-visible{outline:2px solid var(--color-gold-ink);outline-offset:3px}
+.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
+.edit{outline:1.5px dashed rgba(133,99,42,.6);outline-offset:3px}
+.dek{font-size:var(--t-dek);line-height:1.45;color:var(--color-muted);max-width:44ch}
+
+.btn{display:inline-block;padding:15px 28px;font:400 15px/1 var(--font-text);letter-spacing:.02em;text-decoration:none;border:1px solid var(--color-ink);transition:background .2s ease,color .2s ease}
+.btn-ink{background:var(--color-ink);color:var(--color-paper)}
+.btn-ink:hover{background:transparent;color:var(--color-ink)}
+.btn-lime{background:var(--color-lime);color:var(--color-night);border-color:var(--color-lime)}
+.btn-lime:hover{background:transparent;color:var(--color-lime)}
+
+/* Folio: cabecera de página de revista, con número real de sección */
+.folio{display:flex;justify-content:space-between;font-size:var(--t-small);color:var(--color-muted);border-bottom:1px solid var(--color-rule);padding-bottom:var(--space-1);margin-bottom:var(--space-5);font-variant-numeric:lining-nums}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* 3. Portada --------------------------------------------- */
+.cover{padding:var(--space-3) 0 var(--space-5);overflow:hidden}
+.cover-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3)}
+.mono-link img{height:40px;width:auto}
+.cover-top nav{display:flex;gap:var(--space-3);font-size:15px}
+.cover-top nav a{text-decoration:none;color:var(--color-muted)}
+.cover-top nav a:hover{color:var(--color-ink)}
+
+/* La cabecera: el nombre ocupa todo el ancho, como en una revista */
+.masthead{font-size:var(--t-mast);display:block;width:100%;font-weight:500;letter-spacing:-.025em;line-height:.82;text-transform:uppercase;white-space:nowrap;margin-top:var(--space-4);text-align:center;animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+.issue{display:flex;justify-content:flex-start;column-gap:var(--space-4);row-gap:4px;flex-wrap:wrap;border-top:1px solid var(--color-ink);border-bottom:1px solid var(--color-rule);padding:10px 0;margin-top:var(--space-2);font-size:var(--t-small);color:var(--color-muted)}
+
+.cover-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--space-3);margin-top:var(--space-4);align-items:start}
+.cover-lines{grid-column:1 / span 5;display:flex;flex-direction:column;align-items:flex-start;padding-top:var(--space-3)}
+.cover-kicker{font:italic 500 24px/1 var(--font-display);color:var(--color-gold-ink)}
+.cover-story{font-size:clamp(48px,6.2vw,92px);line-height:.92;letter-spacing:-.02em;margin-top:var(--space-2)}
+.cover-dek{font-size:var(--t-dek);line-height:1.45;color:var(--color-muted);max-width:30ch;margin:var(--space-3) 0 var(--space-4)}
+.also{margin-top:var(--space-5);font:italic 500 22px/1 var(--font-display);color:var(--color-gold-ink)}
+.toc{list-style:none;padding:0;margin:var(--space-2) 0 0;width:100%;border-top:1px solid var(--color-rule)}
+.toc a{display:grid;grid-template-columns:56px 1fr;gap:var(--space-2);padding:12px 0;border-bottom:1px solid var(--color-rule);text-decoration:none;font:500 22px/1.2 var(--font-display)}
+.toc a:hover{color:var(--color-gold-ink)}
+.toc .pg{font:400 var(--t-small)/1.9 var(--font-text);color:var(--color-muted)}
+
+/* La foto se monta sobre la cabecera: la ruptura de la rejilla */
+.cover-photo{grid-column:7 / span 6;margin:calc(var(--mast-size, 150px) * -0.78) 0 0;position:relative;z-index:2;animation:rise 1.2s .15s cubic-bezier(.2,.7,.2,1) both}
+.cover-photo img{width:100%;aspect-ratio:490/457;object-fit:cover;border-radius:var(--radius-photo);box-shadow:0 30px 60px -30px rgba(31,28,26,.6)}
+.cover-photo figcaption{margin-top:10px;font-size:var(--t-small);color:var(--color-muted)}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+@media (max-width:900px){
+  .cover-top nav{display:none}
+  .cover-grid{grid-template-columns:1fr}
+  .cover-lines,.cover-photo{grid-column:auto}
+  .cover-photo{margin-top:0;order:-1}
 }
 
-/* 3. Utilidades y botones -------------------------------- */
-.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
-/* Texto pendiente por completar (se quita desde js/main.js) */
-.edit{outline:1.5px dashed rgba(133,99,42,.6);outline-offset:3px;border-radius:3px}
+/* 4. Artículo: Mi proceso -------------------------------- */
+.story-article{padding:var(--space-6) 0}
+.article-head h2{font-size:var(--t-h2);letter-spacing:-.02em;max-width:14ch}
+.article-head .dek{margin-top:var(--space-3)}
+.article-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--space-3);margin-top:var(--space-5)}
+.article-body{grid-column:1 / span 7;columns:2;column-gap:var(--space-4)}
+.article-body h3{font-size:24px;margin:0 0 var(--space-1);break-after:avoid}
+.article-body p{margin-bottom:var(--space-3);break-inside:avoid;max-width:60ch}
+.dropcap::first-letter{float:left;font:500 88px/.78 var(--font-display);color:var(--color-gold-ink);margin:8px 10px 0 0}
+.pull{grid-column:9 / span 4;border-top:3px solid var(--color-gold);padding-top:var(--space-3);align-self:start}
+.pull blockquote{margin:0;font:italic 500 clamp(30px,3.2vw,42px)/1.15 var(--font-display)}
+@media (max-width:900px){
+  .article-body,.pull{grid-column:1 / -1}
+  .article-body{columns:1}
+}
 
-.btn{display:inline-flex;align-items:center;padding:14px 26px;border-radius:999px;font:500 15px/1 var(--f-body);text-decoration:none;border:1px solid var(--ink);cursor:pointer;transition:background .2s ease,color .2s ease}
-.btn-gold{background:var(--ink);color:var(--paper)}
-.btn-gold:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
-.btn-ink{background:transparent;color:var(--ink)}
-.btn-ink:hover,.btn-ghost:hover{background:var(--ink);color:var(--paper)}
-.btn-ghost{background:transparent}
-.btn-lime{background:var(--lime);color:var(--night);border-color:var(--lime)}
-.btn-lime:hover{background:#fff;border-color:#fff}
-
-.h2{font-size:var(--t-2xl);max-width:16ch}
-.intro{max-width:56ch;margin-top:20px;color:var(--muted);font-size:18px}
-section{padding:112px 0}
-
-/* 4. Navegación ------------------------------------------ */
-.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;gap:20px;height:72px}
-.logo{display:flex;align-items:center;gap:14px;text-decoration:none}
-.logo .mono{height:38px;width:auto}
-.logo .word{height:14px;width:auto}
-.nav ul{display:flex;gap:30px;list-style:none;margin:0 0 0 auto;padding:0;font-size:15px}
-.nav ul a{text-decoration:none;color:var(--muted)}
-.nav ul a:hover{color:var(--ink)}
-.nav .btn{padding:11px 20px}
+/* 5. Guía: Lo que hago ----------------------------------- */
+.guide{padding:var(--space-6) 0;background:var(--color-paper-deep)}
+.guide h2{font-size:var(--t-h2);letter-spacing:-.02em;max-width:15ch}
+.guide-cols{display:grid;grid-template-columns:repeat(3,1fr);margin-top:var(--space-5)}
+.guide-cols > div{padding:0 var(--space-4);border-left:1px solid var(--color-rule);display:flex;flex-direction:column;gap:var(--space-2)}
+.guide-cols > div:first-child{padding-left:0;border-left:0}
+.role{font:italic 500 21px/1 var(--font-display);color:var(--color-gold-ink)}
+.guide h3{font-size:44px}
+.guide ul{list-style:none;padding:0;margin:var(--space-1) 0 0;display:grid;gap:6px;font-size:16px}
+.guide li::before{content:"";display:inline-block;width:14px;height:1px;background:var(--color-gold-ink);vertical-align:middle;margin-right:10px}
 @media (max-width:860px){
-  .nav ul{display:none}
-  .nav .btn{margin-left:auto}
-  .logo .word{display:none}
+  .guide-cols{grid-template-columns:1fr;gap:var(--space-4)}
+  .guide-cols > div{padding:0;border-left:0}
 }
 
-/* 5. Portada e historia ---------------------------------- */
-.hero{padding:72px 0 96px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;left:-8%;bottom:-18%;width:560px;height:560px;background:url("../img/monograma-pg.png") center/contain no-repeat;opacity:.06;pointer-events:none}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.2fr .85fr;gap:64px;align-items:center}
-.roles{font-size:var(--t-sm);color:var(--gold-deep);font-weight:500;margin-bottom:28px}
-.hero h1{font-size:var(--t-hero);line-height:.96;letter-spacing:-.02em;max-width:11ch}
-.hero .lede{max-width:46ch;margin-top:30px;font-size:var(--t-md);line-height:1.5;color:var(--muted)}
-.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-
-/* La historia: el elemento protagonista */
-.story-wrap{margin:0;justify-self:center;width:min(370px,100%);display:grid;gap:14px;justify-items:center}
-.story-wrap figcaption{font-size:var(--t-sm);color:var(--muted)}
-.story{position:relative;width:100%;aspect-ratio:9/16;border-radius:30px;overflow:hidden;background:var(--ink);border:6px solid var(--ink);box-shadow:0 40px 70px -30px rgba(31,28,26,.55);rotate:2deg;outline-offset:6px}
-.story .photo{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
-.story::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,12,8,.5) 0%,transparent 20%,transparent 50%,rgba(18,12,8,.88) 100%);pointer-events:none}
-.bars{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:4px;z-index:3}
-.bars i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.35);overflow:hidden}
-.bars i::before{content:"";display:block;height:100%;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
-.bars i.done::before{transform:scaleX(1)}
-.story-head{position:absolute;top:26px;left:14px;right:14px;z-index:3;display:flex;align-items:center;gap:10px;color:#fff;font-size:13px;line-height:1.3}
-.story-head .avatar{width:34px;height:34px;border-radius:50%;background:var(--paper);display:grid;place-items:center;padding:6px;flex:none}
-.story-head .handle{display:block;font-weight:600}
-.story-head .count-frame{display:block;opacity:.7}
-
-.frames{position:absolute;left:18px;right:18px;bottom:26px;z-index:3}
-.frame{display:none;color:#fff}
-.frame.is-on{display:block}
-.frame .hand{font:italic 500 46px/1 var(--f-display);color:var(--gold)}
-.frame .tag{margin-top:10px;font-size:15px;line-height:1.45;max-width:26ch;color:rgba(255,255,255,.92)}
-.poll{background:var(--white);color:var(--ink);border-radius:18px;padding:16px;display:grid;gap:8px;position:relative;z-index:4}
-.poll > p:first-child{font:500 24px/1.1 var(--f-display);margin-bottom:4px}
-.poll button{font:500 15px var(--f-body);text-align:left;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
-.poll button:hover{border-color:var(--ink)}
-.poll button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.poll-reply{font-size:15px;line-height:1.4;color:var(--muted)}
-.poll-reply a{color:var(--gold-deep);font-weight:600}
-
-/* Zonas para tocar: mitad izquierda retrocede, mitad derecha avanza */
-.tap{position:absolute;top:70px;bottom:0;width:50%;z-index:2;background:transparent;border:0;cursor:pointer;padding:0}
-.tap-prev{left:0}
-.tap-next{right:0}
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:56px}.hero h1{max-width:13ch}}
-
-/* 6. Proceso: escalera de crecimiento ------------------- */
-.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:64px 0 0;align-items:end}
-.step{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:26px 22px 28px;display:flex;flex-direction:column;gap:12px}
-.step:nth-child(2){margin-bottom:56px}
-.step:nth-child(3){margin-bottom:112px}
-.step:nth-child(4){margin-bottom:168px}
-.step.now{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.step.now p{color:rgba(244,237,221,.75)}
-.step.now .num{color:var(--gold)}
-.num{font:500 44px/1 var(--f-display);color:var(--gold-deep)}
-.step h3{font-size:var(--t-lg)}
-.step p{font-size:15.5px;color:var(--muted);line-height:1.55}
-@media (max-width:980px){.steps{grid-template-columns:1fr 1fr}.step:nth-child(n){margin-bottom:0}}
-@media (max-width:560px){.steps{grid-template-columns:1fr}}
-
-/* 7. Cita y servicios ------------------------------------ */
-.quote{background:var(--paper-2)}
-.quote .wrap{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center}
-.quote .mono{width:130px}
-.quote figure{margin:0}
-.quote blockquote{margin:0;font:500 clamp(30px,4vw,54px)/1.12 var(--f-display);max-width:22ch;text-wrap:balance}
-.quote figcaption{margin-top:22px;font-size:15px;color:var(--muted)}
-@media (max-width:760px){.quote .wrap{grid-template-columns:1fr;gap:24px}.quote .mono{width:80px}}
-
-.services{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--ink)}
-.svc{padding:32px 32px 8px 0;display:flex;flex-direction:column;gap:10px}
-.svc+.svc{padding-left:32px;border-left:1px solid var(--line)}
-.svc h3{font-size:var(--t-xl)}
-.svc .role{font-size:var(--t-sm);color:var(--gold-deep);font-weight:500;margin-bottom:6px}
-.svc ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px;font-size:16px}
-.svc li{padding-left:18px;position:relative}
-.svc li::before{content:"";position:absolute;left:0;top:.7em;width:7px;height:7px;background:var(--gold);rotate:45deg}
-@media (max-width:860px){.services{grid-template-columns:1fr}.svc+.svc{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
-
-/* 8. Curso ----------------------------------------------- */
-.course{background:var(--night);color:#f2effa}
-.course-kind{font-size:var(--t-sm);color:var(--lime);font-weight:500;margin-bottom:22px}
-.course .h2{max-width:20ch}
-.course .intro{color:rgba(242,239,250,.72)}
-.course-top{display:grid;grid-template-columns:1.35fr .75fr;gap:48px;align-items:end}
-.date{border-top:1px solid var(--lime);padding-top:20px;display:grid;gap:6px}
-.date .big{font:500 clamp(40px,4.4vw,56px)/1 var(--f-display);color:var(--lime)}
-.date .small{color:rgba(242,239,250,.8)}
-.count{margin-top:8px;font-size:15px;color:rgba(242,239,250,.8);font-variant-numeric:tabular-nums}
+/* 6. Tema de portada: el curso --------------------------- */
+.feature{padding:var(--space-6) 0;background:var(--color-night);color:var(--color-on-night)}
+.feature .folio{color:rgba(239,234,248,.65);border-color:rgba(239,234,248,.2)}
+.feature-head{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--space-3);align-items:end}
+.feature-head > div:first-child{grid-column:1 / span 8}
+.feature-kind{font:italic 500 24px/1 var(--font-display);color:var(--color-lime)}
+.feature h2{font-size:var(--t-h2);letter-spacing:-.02em;margin-top:var(--space-2)}
+.feature .dek{color:rgba(239,234,248,.75);margin-top:var(--space-3)}
+.date{grid-column:9 / span 4;border-top:3px solid var(--color-lime);padding-top:var(--space-2)}
+.date-big{font:500 clamp(40px,4.2vw,58px)/1 var(--font-display);color:var(--color-lime);margin-bottom:6px}
+.count{margin-top:var(--space-1);font-size:15px;color:rgba(239,234,248,.8)}
 .count b{color:#fff;font-weight:600}
-@media (max-width:900px){.course-top{grid-template-columns:1fr}}
 
-.mods{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:64px}
-.mod{background:#f6f4fb;color:var(--ink);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:170px 1fr}
-.mod figure{margin:0}
-.mod figure img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
-.mod .body{padding:26px 26px 28px;display:flex;flex-direction:column;gap:10px}
-.pill{align-self:flex-start;font:600 13px/1 var(--f-body);padding:7px 12px;border-radius:999px;color:#fff}
-.m1 .pill{background:var(--violet)}
-.m2 .pill{background:var(--blue)}
-.mod h3{font-size:var(--t-lg)}
-.mod .who{font-size:var(--t-sm);color:var(--muted)}
-.mod ul{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:8px;font-size:15.5px;line-height:1.4}
-.mod li{padding-left:22px;position:relative}
-.mod li::before{content:"";position:absolute;left:0;top:.35em;width:12px;height:7px;border-left:2px solid;border-bottom:2px solid;rotate:-45deg}
-.m1 li::before{color:var(--violet)}
-.m2 li::before{color:var(--blue)}
-@media (max-width:980px){.mods{grid-template-columns:1fr}}
-@media (max-width:520px){.mod{grid-template-columns:1fr}.mod figure{height:240px}}
+.voices{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);margin-top:var(--space-5);padding-top:var(--space-5);border-top:1px solid rgba(239,234,248,.2)}
+.voice{display:grid;grid-template-columns:150px 1fr;gap:var(--space-3);align-items:start}
+.voice img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 15%;border-radius:var(--radius-photo)}
+.pill{display:inline-block;font:600 13px/1 var(--font-text);padding:7px 11px;color:#fff}
+.m1 .pill{background:var(--color-violet)}
+.m2 .pill{background:var(--color-blue)}
+.voice h3{font-size:var(--t-h3);margin-top:var(--space-2)}
+.who{font-size:var(--t-small);color:rgba(239,234,248,.7);margin-top:6px}
+.voice ul{list-style:none;padding:0;margin:var(--space-2) 0 0;display:grid;gap:8px;font-size:16px;line-height:1.45}
+.voice li::before{content:"";display:inline-block;width:14px;height:1px;background:var(--color-lime);vertical-align:middle;margin-right:10px}
 
-.why{margin-top:20px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;padding:28px 0;border-bottom:1px solid rgba(242,239,250,.18)}
-.why p{font-size:18px;max-width:60ch;color:rgba(242,239,250,.85)}
-.why .cert{display:flex;gap:12px;align-items:center;color:var(--lime);font-weight:500}
-.cert svg{width:36px;height:36px;flex:none}
-@media (max-width:760px){.why{grid-template-columns:1fr}}
+.feature-foot{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--space-3);margin-top:var(--space-5);align-items:baseline}
+.why{grid-column:1 / span 8;font:italic 500 clamp(24px,2.4vw,32px)/1.3 var(--font-display)}
+.cert{grid-column:9 / span 4;color:var(--color-lime);font-weight:400}
 
-.enroll{margin-top:48px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
-.qr{width:190px;border-radius:16px;padding:10px;background:#fff}
-.enroll h3{font-size:var(--t-xl);max-width:20ch}
-.enroll p{margin-top:12px;color:rgba(242,239,250,.72)}
-.enroll .cta-row{margin-top:24px}
-@media (max-width:700px){.enroll{grid-template-columns:1fr}.qr{width:160px}}
+.enroll{display:grid;grid-template-columns:auto 1fr;gap:var(--space-4);align-items:center;margin-top:var(--space-5);padding-top:var(--space-5);border-top:1px solid rgba(239,234,248,.2)}
+.qr{width:180px;background:#fff;padding:10px}
+.enroll h3{font-size:clamp(32px,3.6vw,48px);max-width:20ch}
+.enroll p{margin:var(--space-2) 0 var(--space-3);color:rgba(239,234,248,.75)}
+@media (max-width:900px){
+  .feature-head > div:first-child,.date,.why,.cert{grid-column:1 / -1}
+  .voices{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .voice{grid-template-columns:110px 1fr}
+  .enroll{grid-template-columns:1fr}
+}
 
-/* 9. Contacto y pie -------------------------------------- */
-.contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
-.links{display:grid;gap:10px}
-.link{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;border:1px solid var(--line);border-radius:16px;background:var(--white);text-decoration:none;transition:border-color .2s ease}
-.link:hover{border-color:var(--ink)}
-.link small{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
-.link strong{font:500 24px/1.1 var(--f-display)}
-.link svg{width:22px;height:22px;flex:none;color:var(--gold-deep)}
-@media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+/* 7. Contacto: cartas a la editora ----------------------- */
+.letters{padding:var(--space-6) 0}
+.letters-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--space-3)}
+.letters-grid > div{grid-column:1 / span 5}
+.letters h2{font-size:var(--t-h2);letter-spacing:-.02em}
+.letters .dek{margin-top:var(--space-3)}
+.contact-list{grid-column:7 / span 6;margin:0;border-top:1px solid var(--color-ink)}
+.contact-list > div{display:grid;grid-template-columns:120px 1fr;gap:var(--space-2);align-items:baseline;padding:var(--space-3) 0;border-bottom:1px solid var(--color-rule)}
+.contact-list dt{font-size:var(--t-small);color:var(--color-muted)}
+.contact-list dd{margin:0;font:500 clamp(26px,2.6vw,36px)/1.1 var(--font-display)}
+.contact-list a{text-decoration:none}
+.contact-list a:hover{color:var(--color-gold-ink)}
+@media (max-width:860px){.letters-grid > div,.contact-list{grid-column:1 / -1}.contact-list{margin-top:var(--space-4)}}
 
-footer{background:var(--ink);color:rgba(244,237,221,.7);padding:48px 0;font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
-footer .brand{display:flex;align-items:center;gap:16px}
-footer .brand .mono{height:44px}
-footer .brand .word{height:14px;filter:invert(1) sepia(.15)}
-footer a{color:var(--gold)}
-
-/* Crédito del desarrollador (discreto, la marca de la clienta va primero) */
-footer .credit{margin-top:32px;padding-top:20px;border-top:1px solid rgba(244,237,221,.1);justify-content:center}
-footer .tyr{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:rgba(244,237,221,.4);font-size:12px;transition:color .2s ease}
+/* 8. Colofón (con el crédito discreto de TYR) ------------ */
+.colophon{background:var(--color-ink);color:rgba(244,237,221,.65);padding:var(--space-5) 0;font-size:var(--t-small)}
+.colophon .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-3)}
+.colophon-brand{display:flex;align-items:center;gap:var(--space-2)}
+.colophon-brand .mono{height:44px}
+.colophon-brand .word{height:14px;filter:invert(1) sepia(.15)}
+.colophon .tyr{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:rgba(244,237,221,.4);font-size:12px;transition:color .2s ease}
 .tyr img{height:18px;width:auto;opacity:.4;transition:opacity .2s ease}
-.tyr strong{font-weight:600}
-footer .tyr:hover{color:rgba(244,237,221,.8)}
+.colophon .tyr:hover{color:rgba(244,237,221,.85)}
 .tyr:hover img{opacity:.85}

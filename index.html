@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Sitio de Paula Gaitán
+  Sitio de Paula Gaitán · Versión 2 "Portada de revista"
   Diseño y desarrollo web: TYR Productions
 -->
 <html lang="es">
@@ -13,254 +13,211 @@
   <meta name="description" content="Paula Gaitán: mercadóloga, publicista y gerente de imagen en redes. Su proceso, sus servicios y el curso virtual de Marketing Digital y Educación Financiera.">
   <link rel="icon" href="img/monograma-pg.png">
 
-  <!-- Fuentes -->
+  <!-- Fuentes: Cormorant Garamond (titulares, como el logo) y Commissioner (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 
   <!-- Estilos -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!-- ============ NAVEGACIÓN ============ -->
-  <nav class="nav" aria-label="Principal">
-    <div class="wrap">
-      <a class="logo" href="#inicio" aria-label="Paula Gaitán, inicio">
-        <img class="mono" src="img/monograma-pg.png" alt="">
-        <img class="word" src="img/paula-gaitan-texto.png" alt="Paula Gaitán">
-      </a>
-      <ul>
-        <li><a href="#proceso">Mi proceso</a></li>
-        <li><a href="#servicios">Lo que hago</a></li>
-        <li><a href="#curso">El curso</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-      <a class="btn btn-ink" href="#curso">Ver el curso</a>
-    </div>
-  </nav>
-
   <!-- ============ PORTADA ============ -->
-  <header class="hero" id="inicio">
+  <header class="cover" id="inicio">
     <div class="wrap">
-      <div class="hero-text">
-        <p class="roles">Mercadóloga, publicista y gerente de imagen en redes</p>
-        <h1>Hago que las marcas se vean como lo que realmente valen.</h1>
-        <p class="lede">Soy Paula Gaitán. Construyo la imagen de marcas y emprendedores en redes: estrategia, contenido y comunidad. Hoy también enseño lo que aprendí en el camino.</p>
-        <div class="cta-row">
-          <a class="btn btn-gold" data-form href="#curso">Inscribirme al curso</a>
-          <a class="btn btn-ghost" href="#proceso">Conocer mi historia</a>
-        </div>
+      <div class="cover-top">
+        <a class="mono-link" href="#inicio" aria-label="Paula Gaitán, inicio"><img src="img/monograma-pg.png" alt=""></a>
+        <nav aria-label="Secciones">
+          <a href="#proceso">Mi proceso</a>
+          <a href="#servicios">Lo que hago</a>
+          <a href="#curso">El curso</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
       </div>
 
-      <!-- Historia de Instagram interactiva: se avanza tocando, con flechas o con los botones -->
-      <figure class="story-wrap">
-        <div class="story" id="story" tabindex="0" aria-roledescription="historia" aria-label="Historia de Paula Gaitán. Usa las flechas para avanzar.">
-          <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-          <div class="story-head">
-            <span class="avatar"><img src="img/monograma-pg.png" alt=""></span>
-            <div><span class="handle edit">@usuario</span><span class="count-frame" id="storyCount">1 de 4</span></div>
-          </div>
-          <img class="photo" src="img/paula.jpg" alt="Paula Gaitán sonriendo, con camisa violeta">
+      <h1 class="masthead">Paula Gaitán</h1>
 
-          <div class="frames" aria-live="polite">
-            <div class="frame is-on">
-              <p class="hand">hola, soy Paula</p>
-              <p class="tag">Te cuento en 4 historias qué hago.</p>
-            </div>
-            <div class="frame">
-              <p class="hand">Estrategia</p>
-              <p class="tag">Antes de publicar, defino a quién le hablas y qué quieres lograr.</p>
-            </div>
-            <div class="frame">
-              <p class="hand">Creatividad</p>
-              <p class="tag">Piezas y reels que hacen que la gente se detenga a mirar.</p>
-            </div>
-            <div class="frame">
-              <div class="poll" id="poll">
-                <p>¿Tu marca se ve como lo que vale?</p>
-                <button type="button" data-vote="si">Sí, y quiero que crezca</button>
-                <button type="button" data-vote="no">Todavía no</button>
-                <p class="poll-reply" id="pollReply" hidden></p>
-              </div>
-            </div>
-          </div>
+      <div class="issue">
+        <span>Edición de diciembre de 2026</span>
+        <span>Marketing, publicidad e imagen en redes</span>
+        <span>Número 1</span>
+      </div>
 
-          <button class="tap tap-prev" type="button" aria-label="Historia anterior"></button>
-          <button class="tap tap-next" type="button" aria-label="Historia siguiente"></button>
+      <div class="cover-grid">
+        <div class="cover-lines">
+          <p class="cover-kicker">Tema de portada</p>
+          <h2 class="cover-story">Marketing y finanzas en dos días</h2>
+          <p class="cover-dek">El curso virtual del 9 y 10 de diciembre para jóvenes y emprendedores, con certificado de participación.</p>
+          <a class="btn btn-ink" data-form href="#curso">Inscribirme al curso</a>
+
+          <p class="also">En esta edición</p>
+          <ol class="toc">
+            <li><a href="#proceso"><span class="pg">p. 2</span>De la curiosidad a gerenciar marcas</a></li>
+            <li><a href="#servicios"><span class="pg">p. 3</span>Tres oficios, una sola visión</a></li>
+            <li><a href="#curso"><span class="pg">p. 4</span>El curso, módulo por módulo</a></li>
+            <li><a href="#contacto"><span class="pg">p. 5</span>Escríbele a Paula</a></li>
+          </ol>
         </div>
-        <figcaption>Toca la historia para avanzar</figcaption>
-      </figure>
+
+        <figure class="cover-photo">
+          <img src="img/paula-portada.jpg" alt="Retrato de Paula Gaitán con camisa violeta">
+          <figcaption>Paula Gaitán, mercadóloga, publicista y gerente de imagen en redes.</figcaption>
+        </figure>
+      </div>
     </div>
   </header>
 
-  <!-- ============ MI PROCESO ============ -->
-  <section id="proceso">
-    <div class="wrap">
-      <h2 class="h2">Mi crecimiento, capítulo a capítulo</h2>
-      <p class="intro">Cada etapa me dejó una lección que hoy aplico con cada marca y que ahora comparto en clase.</p>
+  <main>
+    <!-- ============ P. 2 · MI PROCESO ============ -->
+    <article class="story-article" id="proceso">
+      <div class="wrap">
+        <p class="folio"><span>Paula Gaitán</span><span>2</span></p>
+        <header class="article-head">
+          <h2>De la curiosidad a gerenciar marcas</h2>
+          <p class="dek">Paula cuenta cómo creció, etapa por etapa, y por qué hoy enseña lo que aprendió.</p>
+        </header>
 
-      <ol class="steps">
-        <li class="step">
-          <span class="num">1</span>
-          <h3>La curiosidad</h3>
-          <p class="edit">Estudié mercadeo y publicidad porque me fascinaba entender por qué una marca se queda en la cabeza de la gente.</p>
-        </li>
-        <li class="step">
-          <span class="num">2</span>
-          <h3>Las primeras marcas</h3>
-          <p class="edit">Empecé con pequeños negocios y emprendedores. Aprendí a hacer mucho con poco presupuesto y a medir cada publicación.</p>
-        </li>
-        <li class="step">
-          <span class="num">3</span>
-          <h3>La imagen en redes</h3>
-          <p class="edit">Asumí la gerencia de imagen de marcas en redes: estrategia, campañas, contenido y comunidad, todo con una misma voz.</p>
-        </li>
-        <li class="step now">
-          <span class="num">4</span>
-          <h3>Enseñar lo aprendido</h3>
-          <p>Hoy comparto mi método con jóvenes y emprendedores, junto a una experta en finanzas, para que su negocio crezca completo.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ CITA ============ -->
-  <section class="quote">
-    <div class="wrap">
-      <img class="mono" src="img/monograma-pg.png" alt="">
-      <figure>
-        <blockquote>“Una marca no crece por publicar más. Crece cuando sabe quién es y se lo cuenta a las personas correctas.”</blockquote>
-        <figcaption>Paula Gaitán</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ============ LO QUE HAGO ============ -->
-  <section id="servicios">
-    <div class="wrap">
-      <h2 class="h2">Tres oficios, una sola visión de tu marca</h2>
-      <div class="services">
-        <div class="svc">
-          <h3>Estrategia</h3>
-          <p class="role">Como mercadóloga</p>
-          <p>Antes de diseñar, defino a quién le hablas y qué quieres lograr.</p>
-          <ul><li>Diagnóstico de marca y competencia</li><li>Público objetivo y propuesta de valor</li><li>Plan de mercadeo digital</li></ul>
-        </div>
-        <div class="svc">
-          <h3>Creatividad</h3>
-          <p class="role">Como publicista</p>
-          <p>Ideas y piezas que hacen que la gente se detenga a mirar.</p>
-          <ul><li>Concepto creativo de campañas</li><li>Copys y guiones para reels</li><li>Diseño de piezas con Canva e IA</li></ul>
-        </div>
-        <div class="svc">
-          <h3>Redes</h3>
-          <p class="role">Como gerente de imagen</p>
-          <p>Una presencia constante y coherente en cada plataforma.</p>
-          <ul><li>Gestión de perfiles y calendario</li><li>Comunidad y respuesta a clientes</li><li>Reportes y ajustes mes a mes</li></ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ EL CURSO ============ -->
-  <section class="course" id="curso">
-    <div class="wrap">
-      <div class="course-top">
-        <div>
-          <p class="course-kind">Curso virtual en dos módulos</p>
-          <h2 class="h2">Marketing Digital y Educación Financiera para Jóvenes y Emprendedores</h2>
-          <p class="intro">Primero aprendes a atraer clientes. Después, a que tu negocio gane dinero de verdad.</p>
-        </div>
-        <div class="date">
-          <span class="big">9 y 10 de diciembre</span>
-          <span class="small">2026, en línea</span>
-          <p class="count" id="count" aria-live="polite"></p>
-        </div>
-      </div>
-
-      <div class="mods">
-        <article class="mod m1">
-          <figure><img src="img/paula.jpg" alt="Paula Gaitán, instructora del módulo de marketing digital"></figure>
-          <div class="body">
-            <span class="pill">Módulo 1</span>
-            <h3>Marketing Digital desde cero</h3>
-            <span class="who">Con Paula Gaitán</span>
-            <ul>
-              <li>Crea perfiles que atraigan a tu público.</li>
-              <li>Diseña posts que destaquen con Canva e IA.</li>
-              <li>Graba reels que enganchen desde el primer segundo.</li>
-            </ul>
+        <div class="article-grid">
+          <div class="article-body">
+            <h3>1. La curiosidad</h3>
+            <p class="dropcap edit">Estudié mercadeo y publicidad porque me fascinaba entender por qué una marca se queda en la cabeza de la gente.</p>
+            <h3>2. Las primeras marcas</h3>
+            <p class="edit">Empecé con pequeños negocios y emprendedores. Aprendí a hacer mucho con poco presupuesto y a medir cada publicación.</p>
+            <h3>3. La imagen en redes</h3>
+            <p class="edit">Asumí la gerencia de imagen de marcas en redes: estrategia, campañas, contenido y comunidad, todo con una misma voz.</p>
+            <h3>4. Enseñar lo aprendido</h3>
+            <p>Hoy comparto mi método con jóvenes y emprendedores, junto a una experta en finanzas, para que su negocio crezca completo.</p>
           </div>
-        </article>
-        <article class="mod m2">
-          <figure><img src="img/instructora-finanzas.jpg" alt="Instructora del módulo de educación financiera, de ArkUp"></figure>
-          <div class="body">
-            <span class="pill">Módulo 2</span>
-            <h3>Educación Financiera</h3>
-            <span class="who">Con <span class="edit">Nombre de la instructora</span>, de ArkUp</span>
-            <ul>
-              <li>Organiza tu dinero y mejora tus hábitos financieros.</li>
-              <li>Calcula costos, precios y ganancias.</li>
-              <li>Elabora el flujo de caja y tu plan financiero.</li>
-            </ul>
+
+          <aside class="pull">
+            <blockquote>“Una marca no crece por publicar más. Crece cuando sabe quién es y se lo cuenta a las personas correctas.”</blockquote>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ P. 3 · LO QUE HAGO ============ -->
+    <section class="guide" id="servicios">
+      <div class="wrap">
+        <p class="folio"><span>Paula Gaitán</span><span>3</span></p>
+        <h2>Tres oficios, una sola visión de tu marca</h2>
+        <div class="guide-cols">
+          <div>
+            <p class="role">Como mercadóloga</p>
+            <h3>Estrategia</h3>
+            <p>Antes de diseñar, defino a quién le hablas y qué quieres lograr.</p>
+            <ul><li>Diagnóstico de marca y competencia</li><li>Público objetivo y propuesta de valor</li><li>Plan de mercadeo digital</li></ul>
           </div>
-        </article>
+          <div>
+            <p class="role">Como publicista</p>
+            <h3>Creatividad</h3>
+            <p>Ideas y piezas que hacen que la gente se detenga a mirar.</p>
+            <ul><li>Concepto creativo de campañas</li><li>Copys y guiones para reels</li><li>Diseño de piezas con Canva e IA</li></ul>
+          </div>
+          <div>
+            <p class="role">Como gerente de imagen</p>
+            <h3>Redes</h3>
+            <p>Una presencia constante y coherente en cada plataforma.</p>
+            <ul><li>Gestión de perfiles y calendario</li><li>Comunidad y respuesta a clientes</li><li>Reportes y ajustes mes a mes</li></ul>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="why">
-        <p>¿Por qué juntos? Porque muchas marcas tienen buenas redes y números en rojo. El marketing te trae clientes; las finanzas hacen que tu negocio dure. En dos días te llevas las dos cosas.</p>
-        <p class="cert">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="6" width="30" height="22" rx="3"/><path d="M9 13h16M9 18h10"/><circle cx="29" cy="27" r="6" fill="#d8f53a"/><path d="M26 32l-1 6 4-2 4 2-1-6"/></svg>
-          Incluye certificado de participación
-        </p>
-      </div>
+    <!-- ============ P. 4 · EL CURSO (tema de portada) ============ -->
+    <section class="feature" id="curso">
+      <div class="wrap">
+        <p class="folio"><span>Tema de portada</span><span>4</span></p>
 
-      <div class="enroll">
-        <img class="qr" src="img/qr-inscripcion.png" alt="Código QR del formulario de inscripción">
-        <div>
-          <h3>Escanea el código o abre el formulario para inscribirte.</h3>
-          <p>La inscripción se hace en un formulario de Google.</p>
-          <div class="cta-row">
+        <div class="feature-head">
+          <div>
+            <p class="feature-kind">Curso virtual en dos módulos</p>
+            <h2>Marketing Digital y Educación Financiera para Jóvenes y Emprendedores</h2>
+            <p class="dek">Primero aprendes a atraer clientes. Después, a que tu negocio gane dinero de verdad.</p>
+          </div>
+          <div class="date">
+            <p class="date-big">9 y 10 de diciembre</p>
+            <p>2026, en línea</p>
+            <p class="count" id="count" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="voices">
+          <article class="voice m1">
+            <img src="img/paula.jpg" alt="Paula Gaitán, instructora del módulo de marketing digital">
+            <div>
+              <p class="pill">Módulo 1</p>
+              <h3>Marketing Digital desde cero</h3>
+              <p class="who">Con Paula Gaitán</p>
+              <ul>
+                <li>Crea perfiles que atraigan a tu público.</li>
+                <li>Diseña posts que destaquen con Canva e IA.</li>
+                <li>Graba reels que enganchen desde el primer segundo.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="voice m2">
+            <img src="img/instructora-finanzas.jpg" alt="Instructora del módulo de educación financiera, de ArkUp">
+            <div>
+              <p class="pill">Módulo 2</p>
+              <h3>Educación Financiera</h3>
+              <p class="who">Con <span class="edit">Nombre de la instructora</span>, de ArkUp</p>
+              <ul>
+                <li>Organiza tu dinero y mejora tus hábitos financieros.</li>
+                <li>Calcula costos, precios y ganancias.</li>
+                <li>Elabora el flujo de caja y tu plan financiero.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="feature-foot">
+          <p class="why">¿Por qué juntos? Porque muchas marcas tienen buenas redes y números en rojo. El marketing te trae clientes; las finanzas hacen que tu negocio dure.</p>
+          <p class="cert">Incluye certificado de participación.</p>
+        </div>
+
+        <div class="enroll">
+          <img class="qr" src="img/qr-inscripcion.png" alt="Código QR del formulario de inscripción">
+          <div>
+            <h3>Escanea el código o abre el formulario para inscribirte.</h3>
+            <p>La inscripción se hace en un formulario de Google.</p>
             <a class="btn btn-lime" data-form href="#curso">Abrir formulario de inscripción</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ CONTACTO ============ -->
-  <section class="contact" id="contacto">
-    <div class="wrap">
-      <div>
-        <h2 class="h2">¿Tu marca necesita otra imagen?</h2>
-        <p class="intro">Escríbeme para una asesoría, para gestionar tus redes o para resolver dudas sobre el curso.</p>
+    <!-- ============ P. 5 · CONTACTO ============ -->
+    <section class="letters" id="contacto">
+      <div class="wrap">
+        <p class="folio"><span>Paula Gaitán</span><span>5</span></p>
+        <div class="letters-grid">
+          <div>
+            <h2>Escríbele a Paula</h2>
+            <p class="dek">Para una asesoría, para gestionar tus redes o para resolver dudas sobre el curso.</p>
+          </div>
+          <dl class="contact-list">
+            <div><dt>Instagram</dt><dd><a class="edit" href="https://instagram.com/" target="_blank" rel="noopener">@usuario</a></dd></div>
+            <div><dt>WhatsApp</dt><dd><a class="edit" href="https://wa.me/570000000000" target="_blank" rel="noopener">+57 300 000 0000</a></dd></div>
+            <div><dt>Correo</dt><dd><a class="edit" href="mailto:correo@dominio.com">correo@dominio.com</a></dd></div>
+          </dl>
+        </div>
       </div>
-      <div class="links">
-        <a class="link" href="https://instagram.com/" target="_blank" rel="noopener"><span><small>Instagram</small><strong class="edit">@usuario</strong></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-        <a class="link" href="https://wa.me/570000000000" target="_blank" rel="noopener"><span><small>WhatsApp</small><strong class="edit">+57 300 000 0000</strong></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg></a>
-        <a class="link" href="mailto:correo@dominio.com"><span><small>Correo</small><strong class="edit">correo@dominio.com</strong></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ============ PIE ============ -->
-  <footer>
+  <!-- ============ COLOFÓN ============ -->
+  <footer class="colophon">
     <div class="wrap">
-      <div class="brand">
+      <div class="colophon-brand">
         <img class="mono" src="img/monograma-pg.png" alt="">
         <img class="word" src="img/paula-gaitan-texto.png" alt="Paula Gaitán">
       </div>
-      <span>© <span id="anio">2026</span> Paula Gaitán. Mercadeo, publicidad e imagen en redes.</span>
-      <a href="#inicio">Volver arriba</a>
-    </div>
-    <div class="wrap credit">
+      <p>© <span id="anio">2026</span> Paula Gaitán. Edición de diciembre de 2026.</p>
       <a class="tyr" href="#" aria-label="Sitio diseñado y desarrollado por TYR Productions">
         <img src="img/tyr-simbolo.png" alt="">
-        <span>Diseño y desarrollo web por <strong>TYR Productions</strong></span>
+        <span>Diseño y desarrollo web: TYR Productions</span>
       </a>
     </div>
   </footer>
